@@ -180,7 +180,81 @@ public class Majority {
 		return (littleMajority || bigMajority );
 	}//end isMajority
 
-
+	/**
+	 * Checks if there is a value that occurs in the data set at more than
+	 * n/3 times
+	 * 
+	 * @param values	the dataset of values to check
+	 * 
+	 * @return	true, if there exists a value
+	 * 			false, otherwise
+	 */
+	public boolean isMajority3( int[] values ) {
+		int size = (int) Math.ceil(values.length/3);
+		int median1 = findMedian( values, size);
+		int numMedian1 = countPivot( values, median1 );
+		if( numMedian1 > size ) {
+			return true;
+		}//end if
+		int[] smallerList1 = createSmallerList( values, median1 );
+		boolean smallMajority1 = true;
+		int firstValue = smallerList1[0];
+		for( int i = 0 ; i < smallerList1.length ; i++ ) {
+			if( smallerList1[i] != firstValue ) {
+				smallMajority1 = false;
+				break;
+			}//end if
+		}//end for
+		if( smallMajority1 ) {
+			if( firstValue != median1 ) {
+				smallMajority1 = false;
+			}//end if
+		}//end if
+		int[] condensedValues = createBiggerList( values, median1 );
+		int median2 = findMedian( condensedValues, (int) Math.ceil(
+				condensedValues.length/2));
+		int numMedian2 = countPivot( condensedValues, median2 );
+		if( numMedian2 > size ) {
+			return true;
+		}//end if
+		int[] smallerList2 = createSmallerList( condensedValues, median2 );
+		System.out.println(median2);
+		boolean smallMajority2 = true;
+		if( smallerList2.length != 0 ) {
+			smallMajority2 = true;
+			firstValue = smallerList2[0];
+			for( int i = 0 ; i < smallerList2.length ; i++ ) {
+				if( smallerList2[i] != firstValue ) {
+					smallMajority2 = false;
+					break;
+				}//end if
+			}//end for
+			if( smallMajority2 ) {
+				if( firstValue != median2 ) {
+					smallMajority2 = false;
+				}//end if
+			}//end if
+		}//end if
+		else if( smallerList2.length == 0) {
+			smallMajority2 = false;
+		}//end else
+		int[] biggerList = createBiggerList( condensedValues, median2 );
+		boolean bigMajority = true;
+		firstValue = biggerList[0];
+		for( int i = 0 ; i < biggerList.length ; i++ ) {
+			if( biggerList[i] != firstValue ) {
+				bigMajority = false;
+				break;
+			}//end if
+		}//end for
+		if( bigMajority ) {
+			if( firstValue != median2 ) {
+				bigMajority = false;
+			}//end if
+		}//end if
+		return ( smallMajority1 || smallMajority2 || bigMajority );
+	}//end isMajority3
+	
 	/**
 	 * Reads in the data to be used,
 	 * Determines if there exists a value in the data set that occurs more
@@ -216,6 +290,13 @@ public class Majority {
 		}//end if
 		else {
 			System.out.println("NO");
+			boolean thirdMajority = M.isMajority3( values );
+			if( thirdMajority ) {
+				System.out.println("YES");
+			}//end if
+			else {
+				System.out.println("NO");
+			}//end else
 		}//end else
 		
 		// Find n/3 Majority
