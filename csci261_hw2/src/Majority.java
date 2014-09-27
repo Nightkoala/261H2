@@ -3,10 +3,10 @@
  * 
  * @author	Derek Brown <djb3718@rit.edu>
  * 
- * Purpose	Given the size of an array of integers, and a listing of integers
- * 			first determine whether a value consists of the majority of of the
- * 			numbers, then determine whether there exists a value that makes up
- * 			a third of the list.
+ * Purpose	Given the size of an array of integers, and a listing of
+ *		integers first determine whether a value consists of the
+ *		majority of of the numbers, then determine whether there
+ *		exists a value that makes up a third of the list.
  *
  */
 
@@ -109,8 +109,9 @@ public class Majority {
 	 * Recursive function that finds the median in an array of values.
 	 * 
 	 * @param values	The array of values.
-	 * @param k			The position the median would be if array was sorted.
-	 * 					k = (length of values)/2 rounded down.
+	 * @param k		The position the median would be if array was
+	 *			sorted.
+	 * 			k = (length of values)/2 rounded down.
 	 * 
 	 * @return	The median of values.
 	 */
@@ -133,8 +134,8 @@ public class Majority {
 	}//end findMedian
 	
 	/**
-	 * Determines if there exists a value in values that occurs more than n/2
-	 * times.
+	 * Determines if there exists a value in values that occurs more than
+	 * n/2 times.
 	 * 
 	 * @param values	The array of values.
 	 * @param median	The median of values.
@@ -205,7 +206,8 @@ public class Majority {
 		Majority M = new Majority( numVals, values );
 		
 		// Find n/2 Majority
-		int median = M.findMedian(values, (int) Math.ceil( values.length/2) );
+		int median = M.findMedian(values, (int) Math.ceil(
+			values.length/2) );
 		boolean halfMajority = M.isMajority( values, median );
 		if( halfMajority ) {
 			System.out.println("YES");
