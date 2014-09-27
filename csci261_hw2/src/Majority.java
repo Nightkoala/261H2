@@ -180,6 +180,7 @@ public class Majority {
 		return (littleMajority || bigMajority );
 	}//end isMajority
 
+
 	/**
 	 * Reads in the data to be used,
 	 * Determines if there exists a value in the data set that occurs more
@@ -210,6 +211,7 @@ public class Majority {
 			values.length/2) );
 		boolean halfMajority = M.isMajority( values, median );
 		if( halfMajority ) {
+			System.out.println("YES");
 			System.out.println("YES");
 		}//end if
 		else {
